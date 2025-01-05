@@ -1,1 +1,1 @@
-# whittier-theme
+# Whittier Solidarity Network Theme

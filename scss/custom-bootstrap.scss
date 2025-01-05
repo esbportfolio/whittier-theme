@@ -1,0 +1,37 @@
+/*
+-- Theme customization notes --
+Primary theme colors are available with prefixes (e.g. bg-[color], text-[color])
+Dark Blue (#153151): primary
+Light Blue (#4474AA): secondary
+Tan (#DED4CC): tan
+Light Orange (#E1B38E): lt-orange
+Dark Orange (#DA852F): orange
+-- Theme customization notes --
+*/
+
+// Override default variables
+$primary: #4474aa;
+$secondary: #153151;
+$success: #78c091;
+$info: #63adf2;
+$warning: #ff850a;
+$danger: #c1292e;
+$light: #f5f6f8;
+$dark: #243242;
+
+// Import functions and variables to add additional colors
+@import "../bootstrap/scss/functions";
+@import "../bootstrap/scss/variables";
+
+// Create map of additional colors
+$extra-colors: (
+  "tan": #ded4cc,
+  "lt-orange": #e1b38e,
+  "orange": #da852f,
+);
+
+// Add map to existing colors
+$theme-colors: map-merge($theme-colors, $extra-colors);
+
+//Import all Bootstrap CSS
+@import "../bootstrap/scss/bootstrap";
