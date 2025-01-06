@@ -6,3 +6,26 @@ Description: A custom theme designed for the Whittier Solidarity Network.
 Version: 1.0
 Text Domain: whit
 */
+
+.whit-site-logo {
+  max-height: 2em;
+}
+
+.whit-copyright {
+  font-size: 0.85em;
+}
+
+a.whit-hover-line-only {
+  text-decoration: none;
+}
+
+a.whit-hover-line-only:hover {
+  text-decoration: underline;
+}
+
+/* Set this in conjunction with a text color on a parent element
+to override the color of child elements. Especially useful if you'll
+be producing links automatically via a walker. */
+.whit-override-link-color a {
+  color: inherit;
+}

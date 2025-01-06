@@ -17,11 +17,16 @@ is launched.
 if (!function_exists('whit_dependency_setup')) {
     function whit_dependency_setup() {
 
-        // NOTE: It's possible to dynamically load files from a directory, but
-        // I've opted not to since that might make it harder to troubleshoot if
-        // a necessary file was removed from that directory.
+        // List of required files
         $required_files = array(
             get_stylesheet_directory() . '/inc/constants.php', // Constants
+            get_stylesheet_directory() . '/inc/helpers.php', // Helper functions
+
+            get_stylesheet_directory() . '/classes/class-whit-html-helper.php', // HTML helper class, goes before rest of classes
+
+            get_stylesheet_directory() . '/classes/abstract-whit-nav-walker.php', // Walker - Navigation walker abstract class
+            get_stylesheet_directory() . '/classes/class-whit-nav-header-walker.php', // Walker - Header navigation walker
+            get_stylesheet_directory() . '/classes/class-whit-nav-footer-walker.php', // Walker - Footer navigation walker
         );
         
         // Require files
@@ -42,7 +47,8 @@ if (!function_exists('whit_theme_setup')) {
 		add_theme_support( 'custom-logo' );
 
         register_nav_menus( array(
-            'primary-menu' => 'Primary Menu'
+            'header-menu' => 'Header Menu',
+            'footer-menu' => 'Footer Menu (no nesting)'
         ) );
     }
 }

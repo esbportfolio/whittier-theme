@@ -5,5 +5,9 @@ declare(strict_types=1);
 get_header();
 
 ?>
-    </body>
-</html>
+        <main>
+
+        </main>
+<?php
+
+get_footer();
