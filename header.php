@@ -14,7 +14,7 @@ declare(strict_types=1);
 	</head>
     <body class="d-flex flex-column min-vh-100 bg-light">
 		<header>
-			<nav class="navbar navbar-expand-lg mb-3">
+			<nav class="navbar navbar-expand-lg mb-4">
 				<div class="container">
 					<div class="d-flex">
 						<?php

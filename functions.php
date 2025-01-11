@@ -27,6 +27,11 @@ if (!function_exists('whit_dependency_setup')) {
             get_stylesheet_directory() . '/classes/abstract-whit-nav-walker.php', // Walker - Navigation walker abstract class
             get_stylesheet_directory() . '/classes/class-whit-nav-header-walker.php', // Walker - Header navigation walker
             get_stylesheet_directory() . '/classes/class-whit-nav-footer-walker.php', // Walker - Footer navigation walker
+            get_stylesheet_directory() . '/classes/class-whit-comment-walker.php', // Walker - Comment walker
+
+            get_stylesheet_directory() . '/classes/class-whit-page-formatter.php', // Class for handling page formatting
+            get_stylesheet_directory() . '/classes/class-whit-pagination-formatter.php', // Class for handling pagination
+            get_stylesheet_directory() . '/classes/class-whit-post-formatter.php', // Class for handling post formatting
         );
         
         // Require files

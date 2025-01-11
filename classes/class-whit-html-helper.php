@@ -1,4 +1,7 @@
 <?php
+/**
+ * Class that encapsulates helper functions for formatting HTML.  Makes it easier to do dependency injection.
+ */
 
 declare(strict_types=1);
 

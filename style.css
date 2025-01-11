@@ -23,6 +23,14 @@ a.whit-hover-line-only:hover {
   text-decoration: underline;
 }
 
+a.whit-hover-bold-only {
+  text-decoration: none;
+}
+
+a.whit-hover-bold-only:hover {
+  font-weight: bold;
+}
+
 /* Set this in conjunction with a text color on a parent element
 to override the color of child elements. Especially useful if you'll
 be producing links automatically via a walker. */
