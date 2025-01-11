@@ -120,7 +120,7 @@ class Whit_Post_Formatter {
         // Using apply filters fixes lets line breaks appear correctly
         // in excerpts, but still ensures that this function always
         // returns a string
-        $post_body = ($excerpt_only) ? apply_filters('the_excerpt', get_the_excerpt()) : get_the_content();
+        $post_body = ($excerpt_only) ? apply_filters('the_excerpt', get_the_excerpt()) : apply_filters('the_content', get_the_content());
 
         // Set the read more link as null, or format if not using the excerpt
         $post_read_more = null;

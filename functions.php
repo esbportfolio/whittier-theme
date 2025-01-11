@@ -45,7 +45,9 @@ add_action( 'after_setup_theme', 'whit_dependency_setup' );
 
 // Add support for theme features
 if (!function_exists('whit_theme_setup')) {
+    
     function whit_theme_setup() {
+
 		// Let Wordpress manage site title
 		add_theme_support( 'title-tag' );
 		// Add support for custom logo
@@ -55,6 +57,7 @@ if (!function_exists('whit_theme_setup')) {
             'header-menu' => 'Header Menu',
             'footer-menu' => 'Footer Menu (no nesting)'
         ) );
+        
     }
 }
 
@@ -76,15 +79,21 @@ be loaded after styles/scripts.
 
 // Add CSS and JS files
 function whit_enqueue_scripts() {
-	wp_enqueue_style(
+	
+    // Bootstrap CSS (local due to color customization)
+    wp_enqueue_style(
         'bootstrap_css',
         get_template_directory_uri() . '/css/custom-bootstrap.css'
     );
+
+    // Local CSS (depends on Bootstrap)
     wp_enqueue_style(
         'whit_main_css',
         get_stylesheet_uri(),
         array('bootstrap_css')
     );
+
+    // Bootstrap JS (loaded from CDN)
     wp_enqueue_script(
         'bootstrap_js',
         'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js',
@@ -94,6 +103,11 @@ function whit_enqueue_scripts() {
             'strategy' => 'defer'
         )
     );
+
+    // WP comment reply JavaScript (loaded only if necesary)
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
 }
 
 add_action( 'wp_enqueue_scripts', 'whit_enqueue_scripts' );

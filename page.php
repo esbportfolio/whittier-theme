@@ -20,7 +20,6 @@ if ( have_posts() ) {
 ?>
                 </div>
             </div>
-
         </main>
 <?php
 

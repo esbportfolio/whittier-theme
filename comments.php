@@ -25,3 +25,6 @@ wp_list_comments(array(
 ?>
                         </div>
                     </div>
+                    <div id="comment-reply">
+<?php comment_form(); ?>
+                    </div>

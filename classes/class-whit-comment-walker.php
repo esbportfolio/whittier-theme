@@ -48,7 +48,7 @@ class Whit_Comment_Walker extends Walker_Comment {
         return $this->html_helper->create_html_tag(
             tag_type: 'a',
             inner_html: 'Reply',
-            classes: array($link_color_class, 'whit-hover-line-only'),
+            classes: array('comment-reply-link', $link_color_class, 'whit-hover-line-only'), // comment-reply-link is what WP JS uses to identify links
             attr: $attr,
         );
 
@@ -228,6 +228,7 @@ class Whit_Comment_Walker extends Walker_Comment {
         $comment_div = $this->html_helper->create_html_tag(
             tag_type: 'div',
             return_str: false,
+            ids: array(sprintf('comment-%s', $data_object->comment_ID)),
             classes: $comment_div_classes,
         );
 
