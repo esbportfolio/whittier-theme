@@ -40,7 +40,7 @@ class Whit_Comment_Walker extends Walker_Comment {
             'data-postid' => $post_id,
             'data-belowelement' => sprintf('comment-%s', $comment_id),
             'data-respondelement' => 'respond',
-            'data-replyto' => $comment_author,
+            'data-replyto' => sprintf('Reply to %s', $comment_author),
             'aria-label' => sprintf('Reply to %s', $comment_author)
         );
 
