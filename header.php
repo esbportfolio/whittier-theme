@@ -70,6 +70,10 @@ wp_nav_menu(array(
 ?>
 <!-- End main nav walker -->
 						</ul>
+						<form class="d-flex ms-md-3" role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value="<?php echo get_search_query(); ?>" name="s">
+							<button class="btn btn-success" type="submit" value="Search" >Search</button>
+						</form>
 					</div>
 				</div>
 			</nav>
