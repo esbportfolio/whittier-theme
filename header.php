@@ -1,4 +1,7 @@
 <?php
+/**
+ * The template for displaying the header
+ */
 
 declare(strict_types=1);
 

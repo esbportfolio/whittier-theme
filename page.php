@@ -1,4 +1,8 @@
 <?php
+/**
+ * The template for displaying pages (i.e. posts with the type 'page')
+ * (A page is considered a type of post in WordPress)
+ */
 
 declare(strict_types=1);
 

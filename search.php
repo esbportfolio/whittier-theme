@@ -1,4 +1,7 @@
 <?php
+/**
+ * The template for displaying search results pages
+ */
 
 declare(strict_types=1);
 
@@ -19,7 +22,7 @@ if ( have_posts() ) {
 	}
 } else {
 ?>
-                    <p>Your search returned no results.  Please try again.</p>
+                    <p>Your search returned no results. Please try again.</p>
 <?php
 }
 

@@ -1,3 +1,11 @@
+<?php
+/**
+ * The template for displaying the footer
+ */
+
+declare(strict_types=1);
+
+?>
 		<footer class="mt-auto">
 			<div class="py-3 bg-orange">
 				<div class="container">

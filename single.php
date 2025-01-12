@@ -1,4 +1,7 @@
 <?php
+/**
+ * The template for displaying all single posts
+ */
 
 declare(strict_types=1);
 

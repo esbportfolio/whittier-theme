@@ -1,4 +1,7 @@
 <?php
+/**
+ * The template for displaying archive pages (including tag and category archives)
+ */
 
 declare(strict_types=1);
 
@@ -17,6 +20,11 @@ if ( have_posts() ) {
 		the_post();
         echo $post_formatter->format_post(5, true);
 	}
+} else {
+    ?>
+                    <p>No posts yet, but check back to see what's coming soon!</p>
+                    <p><a href="<?php echo get_site_url(); ?>">Return Home</a></p>
+    <?php
 }
 
 if ( $wp_query->max_num_pages > 1 ) {

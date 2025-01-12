@@ -1,11 +1,15 @@
 <?php
 /**
+ * Whittier Solidarity Theme functions and definitions
+ * 
  * This file contains only functions related to setting up the theme.
  * Any other functions that need to be loaded should be placed inside
  * the /inc directory.
  */
 
 declare(strict_types=1);
+
+/* ----- ACTIONS ----- */
 
 /* ## HOOK: after_setup_theme ##
 This hook fires when the theme is initialized.
@@ -65,14 +69,7 @@ if (!function_exists('whit_theme_setup')) {
 add_action( 'after_setup_theme', 'whit_theme_setup' );
 
 /* ## HOOK: wp_enqueue_scripts ##
-These hook fires when scripts and styles are enqueued.
-This can be used to enqueue both scripts and styles.  Use
-the dependency array to manage styles/scripts that need to
-be loaded after styles/scripts.
-*/
-
-/* ## HOOK: wp_enqueue_scripts ##
-These hook fires when scripts and styles are enqueued.
+This hook fires when scripts and styles are enqueued.
 This can be used to enqueue both scripts and styles.  Use
 the dependency array to manage styles/scripts that need to
 be loaded after styles/scripts.
@@ -112,3 +109,17 @@ function whit_enqueue_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'whit_enqueue_scripts' );
+
+/* ----- FILTERS ----- */
+
+/* ## FILTER: comment_form_default_fields ##
+This hook fires when the default fields for a comment form
+are loaded.  This can be used to remove default fields.
+*/
+
+function whit_remove_website_field( $fields ) {
+	unset( $fields['url'] );
+	return $fields;
+}
+
+add_filter( 'comment_form_default_fields', 'whit_remove_website_field' );

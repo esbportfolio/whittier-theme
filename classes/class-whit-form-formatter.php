@@ -8,7 +8,10 @@ declare(strict_types=1);
 class Whit_Form_Formatter {
 
     // Dependency injection
-    public function __construct(private Whit_Html_Helper $html_helper) {}
+    public function __construct(private Whit_Html_Helper $html_helper) {
+        // Sanitize any cookies set for the present user and save them
+        $this->user_cookies = wp_get_current_commenter(sanitize_comment_cookies());
+    }
 
     private function format_control_group(string $label_html, string $field_html, array $classes, int $base_indent = 0): string {
         /**
@@ -54,7 +57,6 @@ class Whit_Form_Formatter {
          * @param string        $label_for          Value to use in the 'for' value of the label.
          * @param string        $label_text         Text to display within the label.
          * @param bool          $is_required        If the label marks a required field. Default false.
-         * @param array         $ids                Array of IDs. Default empty array will not show any IDs.
          * @param array         $classes            Array of classes. Default empty array will not show any classes.
          * @param array         $attr               Array of attributes. Default empty array will not show any attributes.
          * 
@@ -64,8 +66,10 @@ class Whit_Form_Formatter {
         // Add the for attribute to the attributes
         $attr['for'] = $label_for;
 
+        // Build the inner HTML
         $inner_html = _x($label_text, 'noun') . ( ($is_required) ?  ' ' . wp_required_field_indicator() : '' );
 
+        // Return the formatted label tag
         return $this->html_helper->create_html_tag(
             tag_type: 'label',
             inner_html: $inner_html,
@@ -114,7 +118,10 @@ class Whit_Form_Formatter {
 
     }
 
-    public function get_fields(int $base_indent = 0, array $args = array()) {
+    public function format_form_fields(int $base_indent = 0, array $args = array()): array {
+        /**
+         * Creates an array of form field HTML
+         */
 
         // Default conditions
         $output = array();
@@ -145,7 +152,7 @@ class Whit_Form_Formatter {
                 classes: $input_classes,
                 attr: array(
                     'type' => 'text',
-                    'value' => '',
+                    'value' => $this->user_cookies['comment_author'] ?? '',
                     'autocomplete' => 'name',
                 ),
             );
@@ -163,7 +170,7 @@ class Whit_Form_Formatter {
                 classes: $input_classes,
                 attr: array(
                     'type' => 'email',
-                    'value' => '',
+                    'value' => $this->user_cookies['comment_author_email'] ?? '',
                     'autocomplete' => 'email',
                     'aria-describedby' => 'email-notes',
                 ),
@@ -182,7 +189,7 @@ class Whit_Form_Formatter {
                 classes: $input_classes,
                 attr: array(
                     'type' => 'text',
-                    'value' => '',
+                    'value' => $this->user_cookies['comment_author_url'] ?? '',
                     'autocomplete' => 'url',
                 ),
             );
@@ -193,7 +200,7 @@ class Whit_Form_Formatter {
         if ($cookies) {
             $label = $this->format_label(
                 'wp-comment-cookies-consent', 
-                'Save my name, email, and website in this browser for the next time I comment.', 
+                'Save my name and email in this browser for the next time I comment.', 
                 false, 
                 array('form-check-label')
             );

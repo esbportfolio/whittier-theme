@@ -1,12 +1,18 @@
 <?php
 /**
- * Comments template part. Should always be called inside a conditional statement, since
- * the comments section shouldn't be created if there are no comments.
+ * The template for displaying comments
+ *
+ * This is the template that displays the area of the page that contains both the current comments
+ * and the comment form.
+ * 
+ * This should always be called inside a conditional statement, since the comments section
+ * shouldn't be created if there are no comments.  Variables in this file should be scoped
+ * to that conditional and should *not* be global.
  */
 
 declare(strict_types=1);
 
-// Retreive comment count for the current post
+// Retrieve comment count for the current post
 $comment_count = get_comments_number(get_the_id());
 $comment_text = $comment_count . ( (intval($comment_count) === 1) ? ' response' : ' responses' ) . ' on “' . get_the_title() . '”';
 
@@ -28,21 +34,28 @@ wp_list_comments(array(
                     <div id="comment-reply" class="mb-3">
 <?php
 
+// Create a new form formatter and have it retrieve the requested fields
 $form_formatter = new Whit_Form_Formatter(new Whit_Html_Helper);
 
-$form_fields = $form_formatter->get_fields(3);
+// NOTE: The URL field has been unset in the functions file, but there doesn't seem to be
+// a way to get that array back out.  This function will create some redundant 
+// html if any fields are unset, but I think it's best to do that rather than
+// having a second place we need to define those arguuments.
+$form_fields = $form_formatter->format_form_fields(3);
 
+// Output comment form, using args to modify
 comment_form(array(
     'fields' => apply_filters( 'comment_form_default_fields', array(
-        'author' => $form_fields['author'],
-        'email' => $form_fields['email'],
-        'url' => $form_fields['url'],
-        'cookies' => $form_fields['cookies'],
+        'author' => $form_fields['author'] ?? '',
+        'email' => $form_fields['email'] ?? '',
+        'url' => $form_fields['url'] ?? '',
+        'cookies' => $form_fields['cookies'] ?? '',
     )),
-    'comment_field' => $form_fields['comment'],
-    'class_submit' => 'btn btn-primary',
+    'comment_field' => $form_fields['comment'] ?? '',
     'cancel_reply_before' => '<span class="ms-1 fs-6">',
     'cancel_reply_after' => '</span>',
+    'class_submit' => 'btn btn-primary',
+    'title_reply_after' => '</h3>' . N,
 )); 
 ?>
                     </div>
